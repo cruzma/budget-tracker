@@ -36,3 +36,51 @@ function saveRecord(record){
     //add the record to you store with add method
     budgetObjectStore.add(record);
 }
+
+function uploadBudget(){
+  //open a transaction on you db
+  const transaction = db.transaction(['new_budget'], 'readwrite');
+
+  //access your object store
+  const budgetObjectStore = transaction.objectStore('new_budget');
+
+  //get all records from store and set to a varaible
+  const getAll = budgetObjectStore.getAll();
+
+  
+  //upon a succesful .getAll() exectution, run this function
+  getAll.onsuccess = function(){
+      //if there wa data in indexedDB's store, lets send it to the api server
+      if(getAll.result.length > 0){
+          fetch('/api/transaction', {
+              method: 'POST',
+              body: JSON.stringify(getAll.result),
+              headers: {
+                  Accept: 'application/json, text/plain, */*',
+                  'Content-Type': 'application/json'
+              }
+          })
+          .then(response => response.json())
+          .then(serverResponse => {
+              if(serverResponse.message){
+                  throw new Error(serverResponse);
+              }
+              //open one more transaction
+              const transaction = db.transaction(['new_budget'], 'readwrite');
+              //access the new_pizza object store
+              const pizzaObjectStore = transaction.objectStore('new_budget');
+              //clear all items in your store
+              pizzaObjectStore.clear();
+
+              alert('all saved budgets has been submitted');
+          })
+          .catch(err => {
+              console.log(err);
+          })
+      }
+  }
+
+}
+
+// listen for app coming back online
+window.addEventListener('online', uploadBudget);
