@@ -1,6 +1,6 @@
 let db;
 
-const request = indexDB.open('budget', 1);
+const request = indexedDB.open('budget', 1);
 
 request.onupgradeneeded = function(event){
     const db = event.target.result;
@@ -52,7 +52,7 @@ function uploadBudget(){
   getAll.onsuccess = function(){
       //if there wa data in indexedDB's store, lets send it to the api server
       if(getAll.result.length > 0){
-          fetch('/api/transaction', {
+          fetch('/api/transaction/bulk', {
               method: 'POST',
               body: JSON.stringify(getAll.result),
               headers: {
@@ -68,9 +68,9 @@ function uploadBudget(){
               //open one more transaction
               const transaction = db.transaction(['new_budget'], 'readwrite');
               //access the new_pizza object store
-              const pizzaObjectStore = transaction.objectStore('new_budget');
+              const budgetObjectStore = transaction.objectStore('new_budget');
               //clear all items in your store
-              pizzaObjectStore.clear();
+              budgetObjectStore.clear();
 
               alert('all saved budgets has been submitted');
           })
