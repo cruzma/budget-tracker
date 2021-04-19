@@ -16,7 +16,7 @@ request.onsuccess = function(event) {
   // check if app is online, if yes run uploadPizza() function to send all local db data to api
   if (navigator.onLine) {
     // we haven't created this yet, but we will soon, so let's comment it out for now
-    // uploadPizza();
+    uploadBudget();
   }
 };
 
@@ -52,7 +52,7 @@ function uploadBudget(){
   getAll.onsuccess = function(){
       //if there wa data in indexedDB's store, lets send it to the api server
       if(getAll.result.length > 0){
-          fetch('/api/transaction/bulk', {
+          fetch('/api/transaction', {
               method: 'POST',
               body: JSON.stringify(getAll.result),
               headers: {
