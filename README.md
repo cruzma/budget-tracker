@@ -14,7 +14,7 @@
   - [Questions](#questions)
 
   ## Description
-  A budget tracker that keeps track of all your expenses that are logged with or without connection, Should display the total transaction even if entered online or offline<br/>
+  A budget tracker that keeps track of all your expenses that are logged with or without internet connection, Should display the total transaction even if entered online or offline<br/>
   <br/>
   <br/>
   ## User Story
