@@ -1,6 +1,7 @@
 # Budget Tracker
   
-  
+  ### Github: https://github.com/cruzma/budget-tracker/
+  ### Website: https://thawing-mesa-66730.herokuapp.com/ 
 
   ## Table of Contents
   - [Description](#description)
@@ -41,10 +42,6 @@
   ## Usage
 
   please type npm start in terminal to start
-  
-  ## Deployed Link
-  
-  Website: [https://thawing-mesa-66730.herokuapp.com/](https://thawing-mesa-66730.herokuapp.com/)
 
   ## Test
   Please type npm start in terminal after all dependicies have been installed.
