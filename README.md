@@ -10,7 +10,7 @@
   - [Image Demo](Image#32Demo)
   - [Usage](#usage)
   - [Test](#test)
-  - [License](#license)
+
   - [Questions](#questions)
 
   ## Description
@@ -48,9 +48,6 @@
 
   ## Test
   Please type npm start in terminal after all dependicies have been installed.
-
-  ## License
-  MIT
 
   ## Questions
   [@cruzma](https://github.com/cruzma)</br>
